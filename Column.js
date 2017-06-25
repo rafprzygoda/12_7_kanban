@@ -15,7 +15,7 @@ function Column(id, name) {
 		
 		// PODPINANIE ODPOWIEDNICH ZDARZEŃ POD WĘZŁY
 		columnDelete.click(function() {
-			self.deleteColumn();
+      self.deleteColumn();
 		});
 		
 		columnAddCard.click(function(event) {
@@ -43,18 +43,20 @@ function Column(id, name) {
 			return column;
 		}
 	}
+
 Column.prototype = {
 	createCard: function(card) {
 	  this.element.children('ul').append(card.element);
 	},
+    
 	deleteColumn: function() {
      var self = this;
      $.ajax({
-         url: baseUrl + '/column' + self.id,
+         url: baseUrl + '/column/' + self.id,
          method: 'DELETE',
          success: function(response) {
              self.element.remove();
          }
      });
-	}
+ }
 };
